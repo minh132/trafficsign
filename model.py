@@ -1,7 +1,11 @@
 import torchvision.models as models
 import torch.nn as nn
 def build_model(pretrained=True, fine_tune=False, num_classes=10):
-    """Sử dụng mô hình pretrained  MobileNetV3 Large"""
+    """
+    Sử dụng mô hình pretrained  MobileNetV3 Large
+    
+    Hàm trên sẽ trả về  mô hình dựa trên việc ta có muốn tải các trọng số đã được đào tạo trước hay không và cũng có muốn tinh chỉnh tất cả các lớp hay không.
+    """
     if pretrained:
         print('[INFO]: Loading pre-trained weights')
     else:
