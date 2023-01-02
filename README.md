@@ -21,4 +21,4 @@ File test được sử đụng để kiểm tra độ chính xác .Nhập câu 
 ```shell
 python py
 ```
-Kết quả dự đoán đúng 12419 trên tổng số 
+Kết quả dự đoán đúng 12419 trên tổng số 12630 
