@@ -17,3 +17,8 @@ File train.py được sử dụng để trai model. Ví dụ để thực hiệ
 ```shell
 python train.py --pretrained --fine-tune --epochs 30 --learning-rate 0.0001.
 ```
+File test được sử đụng để kiểm tra độ chính xác .Nhập câu lệnh vào terminal:
+```shell
+python py
+```
+Kết quả dự đoán đúng 12419 trên tổng số 
