@@ -29,7 +29,7 @@ model = build_model(
 model = model.eval()
 model.load_state_dict(
     torch.load(
-        '../outputs/model.pth', map_location=device
+        '../output/model.pth', map_location=device
     )['model_state_dict']
 )
 def returnCAM(feature_conv, weight_softmax, class_idx):
@@ -75,7 +75,7 @@ def visualize_and_save_map(
         np.array(orig_image, dtype=np.uint8)
     ])
     if save_name is not None:
-        cv2.imwrite(f"../outputs/test_results/CAM_{save_name}.jpg", img_concat)
+        cv2.imwrite(f"../output/test_results/CAM_{save_name}.jpg", img_concat)
 features_blobs = []
 def hook_feature(module, input, output):
     features_blobs.append(output.data.cpu().numpy())
