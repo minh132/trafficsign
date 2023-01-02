@@ -37,6 +37,9 @@ class ValidTransforms:
         """Chuẩn hóa các giá trị bằng cách sử dụng giá trị trung bình và độ lệch chuẩn của ImageNet và chuyển đổi hình ảnh thành tensor"""
         self.transforms = A.Compose([
             A.Resize(resize, resize),
+            A.RandomBrightnessContrast(),
+            A.RandomFog(),
+            A.RandomRain(),
             A.Normalize(
                 mean=[0.485, 0.456, 0.406],
                 std=[0.229, 0.224, 0.225]
@@ -50,7 +53,6 @@ class ValidTransforms:
 def get_datasets():
     """
     Chuẩn bị cho tập datasets
-
     Trả về dữ liệu tập train và tập test cùng với tên class
     """
     dataset = datasets.ImageFolder(
