@@ -5,25 +5,23 @@ import pydoc
 from torchvision import datasets
 from torch.utils.data import DataLoader, Subset
 from albumentations.pytorch import ToTensorV2
-root='trafficsign\data\Final_Training\Images'
+root='..\\data\\Final_Training\\Images'
 valid_split=0.1
 resize=224
 batch_size=64
-
-class TrainTransforms:
+MEAN=[0.485, 0.456, 0.406]
+STD=[0.229, 0.224, 0.225]
+class Transforms:
     """_summary
-    Chuẩn hóa dữ liệu tập train
+    Chuẩn hóa dữ liệu 
     """
     def __init__(self, resize):
         """Chuẩn hóa các giá trị bằng cách sử dụng giá trị trung bình và độ lệch chuẩn của ImageNet và chuyển đổi hình ảnh thành tensor"""
         self.transforms = A.Compose([
             A.Resize(resize, resize),
-            A.RandomBrightnessContrast(),
-            A.RandomFog(),
-            A.RandomRain(),
             A.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
+                mean=MEAN,
+                std=STD,
                 ),
             ToTensorV2()
         ])
@@ -32,24 +30,6 @@ class TrainTransforms:
         """Truyền hình ảnh qua self.transforms"""
         return self.transforms(image=np.array(img))['image']
 
-class ValidTransforms:
-    """_summary
-    Chuẩn hóa dữ liệu tập validationn
-    """
-    def __init__(self, resize):
-        """Chuẩn hóa các giá trị bằng cách sử dụng giá trị trung bình và độ lệch chuẩn của ImageNet và chuyển đổi hình ảnh thành tensor"""
-        self.transforms = A.Compose([
-            A.Resize(resize, resize),
-            A.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-                ),
-            ToTensorV2()
-        ])
-    
-    def __call__(self, img):
-        """Truyền hình ảnh qua self.transforms"""
-        return self.transforms(image=np.array(img))['image']
 def get_datasets():
     """
     Chuẩn bị cho tập datasets
@@ -57,18 +37,15 @@ def get_datasets():
     """
     dataset = datasets.ImageFolder(
         root, 
-        transform=(TrainTransforms(resize))
+        transform=(Transforms(resize))
     )
     dataset_test = datasets.ImageFolder(
         root, 
-        transform=(ValidTransforms(resize))
+        transform=(Transforms(resize))
     )
     dataset_size = len(dataset)
-    
     valid_size = int(valid_split*dataset_size)
-
     indices = torch.randperm(len(dataset)).tolist()
-
     dataset_train = Subset(dataset, indices[:-valid_size])
     dataset_valid = Subset(dataset_test, indices[-valid_size:])
     return dataset_train, dataset_valid, dataset.classes
