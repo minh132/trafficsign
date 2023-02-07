@@ -30,5 +30,5 @@ Một số kết quả minh họa:
 ![CAM_00035](https://user-images.githubusercontent.com/89315105/210267319-a3b8fb1b-5027-4553-85b6-56071c25f886.jpg)
 
 ## Nhận diện biển báo với YOLO
-Tiếp tục sử dụng bộ dữ liệu German Traffic Sign đã được gán nhãn theo chuẩn Yolo :[Link tải](https://drive.google.com/file/d/1bdQKOCzPrfXWUA2b6kDAA8oaSaiD6A77/view?usp=sharing).
+Tiếp tục sử dụng bộ dữ liệu German Traffic Sign đã được gán nhãn theo chuẩn Yolo :[Link tải](https://drive.google.com/file/d/1bdQKOCzPrfXWUA2b6kDAA8oaSaiD6A77/view?usp=sharing).  
 Tạo một folder tên pr1 trong Google Drive. Liên kết Colab với Drive rồi thực hiện các bước như trong file YOLOv6.ipynb
